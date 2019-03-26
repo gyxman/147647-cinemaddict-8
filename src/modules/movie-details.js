@@ -1,7 +1,9 @@
-import {getFormatedDuration, createElement} from './util';
+import {getFormatedDuration} from './util';
+import {Component} from './component';
 
-export class MovieDetails {
+export class MovieDetails extends Component {
   constructor(data) {
+    super();
     // this._id = data.id;
     this._title = data.title;
     this._poster = data.poster;
@@ -12,7 +14,6 @@ export class MovieDetails {
     // this._genre = data.genre;
     this._commentsCount = data.commentsCount;
 
-    this._onClick = null;
     this._onCloseButtonClick = this._onCloseButtonClick.bind(this);
   }
 
@@ -20,10 +21,6 @@ export class MovieDetails {
     if (typeof this._onClick === `function`) {
       this._onClick();
     }
-  }
-
-  get element() {
-    return this._element;
   }
 
   get template() {
@@ -194,27 +191,12 @@ export class MovieDetails {
       </section>`.trim();
   }
 
-  set onClick(fn) {
-    this._onClick = fn;
-  }
-
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
-  }
-
-  bind() {
+  createListeners() {
     this._element.querySelector(`.film-details__close-btn`)
       .addEventListener(`click`, this._onCloseButtonClick);
   }
 
-  unbind() {
+  removeListeners() {
     this._element.querySelector(`.film-details__close-btn`)
       .removeEventListener(`click`, this._onCloseButtonClick);
   }
