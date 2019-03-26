@@ -3,7 +3,6 @@ import getFilterElement from './modules/make-filter.js';
 import {filters} from './data/filters.js';
 import {movies} from './data/movies.js';
 import {Movie} from './modules/movie.js';
-import {MovieRelated} from './modules/movie-related.js';
 import {MovieDetails} from "./modules/movie-details";
 
 const pageContainer = document.querySelector(`body`);
@@ -22,36 +21,15 @@ const getFilterTemplate = ()=> {
   filtersContainer.innerHTML = fragment;
 };
 
-const getMoviesTemplate = (container, count)=> {
-  moviesContainer.innerHTML = ``;
-
-  for (let i = 0; i < count; i++) {
-    const movieComponent = new Movie(movies[i]);
-    const movieDetailsComponent = new MovieDetails(movies[i]);
-    moviesContainer.appendChild(movieComponent.render());
-
-    movieComponent.onClick = () => {
-      movieDetailsComponent.render();
-      pageContainer.appendChild(movieDetailsComponent.element);
-    };
-
-    movieDetailsComponent.onClick = () => {
-      pageContainer.removeChild(movieDetailsComponent.element);
-      movieDetailsComponent.unrender();
-    };
-  }
-};
-
-const getRelatedMoviesTemplate = (container, count)=> {
+const getMoviesTemplate = (container, count, isRelated)=> {
   container.innerHTML = ``;
 
   for (let i = 0; i < count; i++) {
-    const getMovieNumber = getRandomNumber(0, movies.length - 1);
-    const movieRelatedComponent = new MovieRelated(movies[getMovieNumber]);
-    const movieDetailsComponent = new MovieDetails(movies[getMovieNumber]);
-    container.appendChild(movieRelatedComponent.render());
+    const movieComponent = new Movie(movies[i], isRelated);
+    const movieDetailsComponent = new MovieDetails(movies[i]);
+    container.appendChild(movieComponent.render());
 
-    movieRelatedComponent.onClick = () => {
+    movieComponent.onClick = () => {
       movieDetailsComponent.render();
       pageContainer.appendChild(movieDetailsComponent.element);
     };
@@ -78,8 +56,8 @@ const handleFilterClick = (event) => {
 };
 
 getFilterTemplate();
-getMoviesTemplate(moviesContainer, 7);
-getRelatedMoviesTemplate(moviesRatedContainer, 2);
-getRelatedMoviesTemplate(moviesCommentedContainer, 2);
+getMoviesTemplate(moviesContainer, 7, false);
+getMoviesTemplate(moviesRatedContainer, 2, true);
+getMoviesTemplate(moviesCommentedContainer, 2, true);
 
 filtersContainer.addEventListener(`click`, handleFilterClick);
