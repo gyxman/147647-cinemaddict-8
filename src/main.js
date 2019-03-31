@@ -38,6 +38,18 @@ const getMoviesTemplate = (container, count, isRelated)=> {
       pageContainer.removeChild(movieDetailsComponent.element);
       movieDetailsComponent.unrender();
     };
+    const updateMovie = (newObject) => {
+      movies[i].rating = newObject.rating;
+      movies[i].comments.push(newObject.comment);
+
+      movieComponent.update(movies[i]);
+      movieComponent.updateCommentCount();
+      pageContainer.removeChild(movieDetailsComponent.element);
+      movieDetailsComponent.unrender();
+    };
+
+    movieDetailsComponent.onComment = updateMovie;
+    movieDetailsComponent.onRating = updateMovie;
   }
 };
 

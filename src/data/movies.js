@@ -1,4 +1,4 @@
-import {getRandomNumber} from '../modules/util.js';
+import {getRundomTimestamp} from "../modules/util";
 
 export const movies = [
   {
@@ -24,15 +24,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -41,7 +38,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 2,
@@ -66,15 +127,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -83,7 +141,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 3,
@@ -108,15 +230,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -125,7 +244,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 4,
@@ -150,15 +333,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -167,7 +347,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 5,
@@ -192,15 +436,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -209,7 +450,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 6,
@@ -234,15 +539,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -251,7 +553,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 7,
@@ -276,15 +642,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -293,7 +656,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 8,
@@ -318,15 +745,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -335,7 +759,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 9,
@@ -360,15 +848,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -377,7 +862,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 10,
@@ -402,15 +951,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -419,7 +965,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 11,
@@ -444,15 +1054,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -461,7 +1068,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 12,
@@ -486,15 +1157,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -503,7 +1171,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 13,
@@ -528,15 +1260,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -545,7 +1274,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 14,
@@ -570,15 +1363,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -587,7 +1377,71 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   },
   {
     id: 15,
@@ -612,15 +1466,12 @@ export const movies = [
       `Aliquam erat volutpat.`,
       `Nunc fermentum tortor ac porta dapibus.`,
       `In rutrum ac purus sit amet tempus`,
-    ],
+    ][Math.floor(Math.random() * 11)],
     rating: [
       9.8,
       1.2,
     ][Math.floor(Math.random() * 2)],
-    year: [
-      2018,
-      2017,
-    ][Math.floor(Math.random() * 2)],
+    date: getRundomTimestamp(),
     duration: [
       73,
       60,
@@ -629,6 +1480,70 @@ export const movies = [
       `Comedy`,
       `Horror`,
     ][Math.floor(Math.random() * 2)],
-    commentsCount: getRandomNumber(),
+    comments: [
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      },
+      {
+        text: [
+          `This is a great film`,
+          `So long-long story, boring!`,
+          `This is a bad film`
+        ][Math.floor(Math.random() * 3)],
+        author: [
+          `Peter Piper`,
+          `Mike Lokki`,
+          `Tim Macoveev`
+        ][Math.floor(Math.random() * 3)],
+        reaction: [
+          `😴`,
+          `😐`,
+          `😀`][Math.floor(Math.random() * 3)],
+        date: [
+          getRundomTimestamp(),
+          getRundomTimestamp(),
+          getRundomTimestamp()
+        ][Math.floor(Math.random() * 3)],
+      }
+    ],
   }
 ];
