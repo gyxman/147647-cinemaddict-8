@@ -1,5 +1,8 @@
 import {getFormatedDuration} from './util';
 import {Component} from './component';
+import getCommentsElement from './parts/make-movie-comment';
+import {reactions} from '../data/reactions';
+import moment from "moment";
 
 export class MovieDetails extends Component {
   constructor(data) {
@@ -9,18 +12,76 @@ export class MovieDetails extends Component {
     this._poster = data.poster;
     this._description = data.description;
     this._rating = data.rating;
-    // this._year = data.year;
+    this._date = data.date;
     this._duration = data.duration;
-    // this._genre = data.genre;
-    this._commentsCount = data.commentsCount;
+    this._genre = data.genre;
+    this._comments = data.comments;
+
+    this._onComment = null;
 
     this._onCloseButtonClick = this._onCloseButtonClick.bind(this);
+    this._onCommentTextareaKeydown = this._onCommentTextareaKeydown.bind(this);
+    this._onRatingButtonClick = this._onRatingButtonClick.bind(this);
+  }
+
+  _processForm(formData) {
+    const entry = {
+      rating: ``,
+      comment: {
+        text: ``,
+        author: `Me`,
+        reaction: ``,
+        date: new Date(),
+      },
+    };
+
+    const movieDetailsMapper = MovieDetails.createMapper(entry);
+
+    for (const pair of formData.entries()) {
+      const [property, value] = pair;
+      if (movieDetailsMapper[property]) {
+        movieDetailsMapper[property](value);
+      }
+    }
+
+    return entry;
+  }
+
+  _getPopupData() {
+    const formData = new FormData(this._element.querySelector(`.film-details__inner`));
+    const newData = this._processForm(formData);
+
+    return newData;
   }
 
   _onCloseButtonClick() {
     if (typeof this._onClick === `function`) {
       this._onClick();
     }
+  }
+
+  _onCommentTextareaKeydown(evt) {
+    if (evt.ctrlKey && evt.keyCode === 13) {
+      if (typeof this._onComment === `function`) {
+        const newData = this._getPopupData();
+        this._onComment(newData);
+      }
+    }
+  }
+
+  _onRatingButtonClick() {
+    if (typeof this._onRating === `function`) {
+      const newData = this._getPopupData();
+      this._onRating(newData);
+    }
+  }
+
+  set onComment(fn) {
+    this._onComment = fn;
+  }
+
+  set onRating(fn) {
+    this._onRating = fn;
   }
 
   get template() {
@@ -65,11 +126,12 @@ export class MovieDetails extends Component {
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Release Date</td>
-                  <td class="film-details__cell">15 June 2018 (USA)</td>
-                </tr>
-                <tr class="film-details__row">
-                  <td class="film-details__term">Runtime</td>
-                  <td class="film-details__cell">${getFormatedDuration(this._duration)}</td>
+                  <td class="film-details__cell">${moment(this._date).format(`D MMMM YYYY`)} (USA)</td>
+                  </tr>
+                  <tr class="film-details__row">
+                    <td class="film-details__term">Runtime</td>
+                    <!-- TODO здесь нужно выводить в минутах через moment.js -->
+                    <td class="film-details__cell">${getFormatedDuration(this._duration)}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Country</td>
@@ -102,19 +164,10 @@ export class MovieDetails extends Component {
           </section>
       
           <section class="film-details__comments-wrap">
-            <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${this._commentsCount}</span></h3>
+            <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${this._comments.length}</span></h3>
       
             <ul class="film-details__comments-list">
-              <li class="film-details__comment">
-                <span class="film-details__comment-emoji">😴</span>
-                <div>
-                  <p class="film-details__comment-text">So long-long story, boring!</p>
-                  <p class="film-details__comment-info">
-                    <span class="film-details__comment-author">Tim Macoveev</span>
-                    <span class="film-details__comment-day">3 days ago</span>
-                  </p>
-                </div>
-              </li>
+              ${getCommentsElement(this._comments)}
             </ul>
       
             <div class="film-details__new-comment">
@@ -194,10 +247,34 @@ export class MovieDetails extends Component {
   createListeners() {
     this._element.querySelector(`.film-details__close-btn`)
       .addEventListener(`click`, this._onCloseButtonClick);
+    this._element.querySelector(`.film-details__comment-input`)
+      .addEventListener(`keydown`, this._onCommentTextareaKeydown);
+    this._element.querySelectorAll(`.film-details__user-rating-input`).forEach((it)=> {
+      it.addEventListener(`change`, this._onRatingButtonClick);
+    });
   }
 
   removeListeners() {
     this._element.querySelector(`.film-details__close-btn`)
       .removeEventListener(`click`, this._onCloseButtonClick);
+    this._element.querySelector(`.film-details__comment-input`)
+      .removeEventListener(`keydown`, this._onCommentTextareaKeydown);
+    this._element.querySelectorAll(`.film-details__user-rating-input`).forEach((it)=> {
+      it.removeEventListener(`change`, this._onRatingButtonClick);
+    });
+  }
+
+  static createMapper(target) {
+    return {
+      'comment-emoji': (value) => {
+        target.comment.reaction = reactions[value];
+      },
+      'comment': (value) => {
+        target.comment.text = value;
+      },
+      'score': (value) => {
+        target.rating = value;
+      }
+    };
   }
 }
