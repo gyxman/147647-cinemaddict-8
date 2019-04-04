@@ -103,6 +103,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: true,
+    isWatched: false,
   },
   {
     id: 2,
@@ -206,6 +208,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: true,
   },
   {
     id: 3,
@@ -309,6 +313,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 4,
@@ -412,6 +418,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 5,
@@ -515,6 +523,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 6,
@@ -618,6 +628,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 7,
@@ -721,6 +733,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 8,
@@ -824,6 +838,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 9,
@@ -927,6 +943,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 10,
@@ -1030,6 +1048,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 11,
@@ -1133,6 +1153,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 12,
@@ -1236,6 +1258,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 13,
@@ -1339,6 +1363,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 14,
@@ -1442,6 +1468,8 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   },
   {
     id: 15,
@@ -1545,5 +1573,7 @@ export const movies = [
         ][Math.floor(Math.random() * 3)],
       }
     ],
+    isInWatchList: false,
+    isWatched: false,
   }
 ];
