@@ -1,22 +1,22 @@
 export const filters = [
   {
-    caption: `All movies`,
+    name: `All movies`,
     link: `all`
   },
   {
-    caption: `Watchlist`,
+    name: `Watchlist`,
     link: `watchlist`
   },
   {
-    caption: `History`,
+    name: `History`,
     link: `history`
   },
   {
-    caption: `Favorites`,
+    name: `Favorites`,
     link: `favorites`
   },
   {
-    caption: `Stats`,
+    name: `Stats`,
     link: `stats`
   }
 ];

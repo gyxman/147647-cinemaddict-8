@@ -1,10 +1,10 @@
 import {getFormatedDuration} from './util';
-import {Component} from './component';
+import Component from './component';
 import getCommentsElement from './parts/make-movie-comment';
 import {reactions} from '../data/reactions';
 import moment from "moment";
 
-export class MovieDetails extends Component {
+class MovieDetails extends Component {
   constructor(data) {
     super();
     // this._id = data.id;
@@ -278,3 +278,5 @@ export class MovieDetails extends Component {
     };
   }
 }
+
+export default MovieDetails;

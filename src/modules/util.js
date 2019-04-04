@@ -27,3 +27,7 @@ export const createElement = (template) => {
 
   return newElement.firstChild;
 };
+
+export const getHashUrl = () => {
+  return window.location.hash;
+};

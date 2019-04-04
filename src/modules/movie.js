@@ -1,8 +1,8 @@
 import {getCommentsString, getFormatedDuration} from './util';
-import {Component} from './component';
+import Component from './component';
 import moment from "moment";
 
-export class Movie extends Component {
+class Movie extends Component {
   constructor(data, isRelated) {
     super();
     // this._id = data.id;
@@ -14,15 +14,53 @@ export class Movie extends Component {
     this._duration = data.duration;
     this._genre = data.genre;
     this._comments = data.comments;
+    this._isInWatchList = data.isInWatchList;
+    this._isWatched = data.isWatched;
+
     this._isRelated = isRelated;
 
+    this._onAddToWatchList = null;
+    this._onMarkAsWatched = null;
+
     this._onCommentsButtonClick = this._onCommentsButtonClick.bind(this);
+    this._onAddToWatchListButtonClick = this._onAddToWatchListButtonClick.bind(this);
+    this._onMarkAsWatchedButtonClick = this._onMarkAsWatchedButtonClick.bind(this);
   }
 
   _onCommentsButtonClick() {
     if (typeof this._onClick === `function`) {
       this._onClick();
     }
+  }
+
+  _onAddToWatchListButtonClick(evt) {
+    evt.preventDefault();
+    if (typeof this._onAddToWatchList === `function`) {
+      this._onAddToWatchList();
+    }
+  }
+
+  set onAddToWatchList(fn) {
+    this._onAddToWatchList = fn;
+  }
+
+  addToWatchList() {
+    this._isInWatchList = !this._isInWatchList;
+  }
+
+  _onMarkAsWatchedButtonClick(evt) {
+    evt.preventDefault();
+    if (typeof this._onMarkAsWatched === `function`) {
+      this._onMarkAsWatched();
+    }
+  }
+
+  set onMarkAsWatched(fn) {
+    this._onMarkAsWatched = fn;
+  }
+
+  markAsWatched() {
+    this._isWatched = !this._isWatched;
   }
 
   get template() {
@@ -60,10 +98,24 @@ export class Movie extends Component {
   createListeners() {
     this._element.querySelector(`.film-card__comments`)
       .addEventListener(`click`, this._onCommentsButtonClick);
+    if (!this._isRelated) {
+      this._element.querySelector(`.film-card__controls-item--add-to-watchlist`)
+        .addEventListener(`click`, this._onAddToWatchListButtonClick);
+      this._element.querySelector(`.film-card__controls-item--mark-as-watched`)
+        .addEventListener(`click`, this._onMarkAsWatchedButtonClick);
+    }
   }
 
   removeListeners() {
     this._element.querySelector(`.film-card__comments`)
       .removeEventListener(`click`, this._onCommentsButtonClick);
+    if (!this._isRelated) {
+      this._element.querySelector(`.film-card__controls-item--add-to-watchlist`)
+        .removeEventListener(`click`, this._onAddToWatchListButtonClick);
+      this._element.querySelector(`.film-card__controls-item--mark-as-watched`)
+        .removeEventListener(`click`, this._onMarkAsWatchedButtonClick);
+    }
   }
 }
+
+export default Movie;
