@@ -2,7 +2,6 @@ import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import * as _ from 'lodash';
 import Component from './component';
-import moment from "moment";
 
 class Statistic extends Component {
   constructor(films) {
