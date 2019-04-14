@@ -16,6 +16,7 @@ const getCommentElement = (comment) => {
 
 export default (comments) => {
   let commentElement = ``;
+
   for (const comment of comments) {
     commentElement += getCommentElement(comment);
   }

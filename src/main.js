@@ -1,5 +1,4 @@
 import filtersData from './data/filters.js';
-// import {movies as moviesData} from './data/movies.js';
 import Movie from './modules/movie.js';
 import MovieDetails from "./modules/movie-details";
 import Filter from "./modules/filter";
@@ -23,8 +22,8 @@ const profileRating = document.querySelector(`.profile__rating`);
 const AUTHORIZATION = `Basic lT2LMSQGFTKYBS72vZ5`;
 const END_POINT = `https://es8-demo-srv.appspot.com/moowle/`;
 const api = new API({endPoint: END_POINT, authorization: AUTHORIZATION});
-const COUNTOFSHOWMOVIES = 5;
-const COUNTOFSHOWRELATEDMOVIES = 2;
+const COUNT_OF_SHOW_MOVIES = 5;
+const COUNT_OF_SHOW_RELATED_MOVIES = 2;
 let numberOfLoad = 0;
 let movies = [];
 
@@ -38,32 +37,34 @@ const getProfileRating = (count) => {
   }
 };
 
-const getCurrentMovies = (items) => {
-  const countMovies = numberOfLoad * COUNTOFSHOWMOVIES;
+const updateProfileRating = () => {
+  profileRating.textContent = getProfileRating(movies.filter((it) => it.isWatched).length);
+};
 
-  if (countMovies + COUNTOFSHOWMOVIES >= items.length) {
+const getCurrentMovies = (items) => {
+  const countMovies = numberOfLoad * COUNT_OF_SHOW_MOVIES;
+
+  if (countMovies + COUNT_OF_SHOW_MOVIES >= items.length) {
     showMoreButton.classList.add(`visually-hidden`);
   } else {
     showMoreButton.classList.remove(`visually-hidden`);
   }
 
-  const filteredMovies = items.slice(countMovies, countMovies + COUNTOFSHOWMOVIES);
+  const filteredMovies = items.slice(countMovies, countMovies + COUNT_OF_SHOW_MOVIES);
   numberOfLoad++;
   return filteredMovies;
 };
 
-const getRelatedRatedMovies = (items) => {
-  const tempItems = [...items];
-  const sortedMovies = tempItems.sort((a, b) => b.totalRating - a.totalRating);
-  const filteredMovies = sortedMovies.slice(0, COUNTOFSHOWRELATEDMOVIES);
+const getRatedRelatedMovies = (items) => {
+  const sortedMovies = [...items].sort((a, b) => b.totalRating - a.totalRating);
+  const filteredMovies = sortedMovies.slice(0, COUNT_OF_SHOW_RELATED_MOVIES);
 
   return filteredMovies;
 };
 
-const getRelatedCommentedMovies = (items) => {
-  const tempItems = [...items];
-  const sortedMovies = tempItems.sort((a, b) => b.comments.length - a.comments.length);
-  const filteredMovies = sortedMovies.slice(0, COUNTOFSHOWRELATEDMOVIES);
+const getCommentedRelatedMovies = (items) => {
+  const sortedMovies = [...items].sort((a, b) => b.comments.length - a.comments.length);
+  const filteredMovies = sortedMovies.slice(0, COUNT_OF_SHOW_RELATED_MOVIES);
 
   return filteredMovies;
 };
@@ -134,14 +135,14 @@ const getFiltersTemplate = (filters, items) => {
     filtersContainer.appendChild(filterComponent.render());
   });
 
-  getFiltersCountMovies(filters, items);
+  setCountFilteredMovies(filters, items);
 
   showMoreButton.addEventListener(`click`, () => {
     showMovies(moviesContainer, getCurrentMovies(filteredMovies));
   });
 };
 
-const getFiltersCountMovies = (filters, items) => {
+const setCountFilteredMovies = (filters, items) => {
   const filtersElements = document.querySelectorAll(`.main-navigation__item`);
   for (let filter of filtersElements) {
     const hash = filter.hash;
@@ -191,8 +192,65 @@ const showMovies = (container, items, isRelated = false, isClear = false) => {
       movieDetailsComponent.unrender();
     };
 
-    const updateMovieComments = (newObject, isDelete = false) => {
-      // TODO проверить необходимость использования переменных old
+    const updateWatchlistMovies = (component) => {
+      component.blockControls();
+      movie.isInWatchList = movieComponent.addToWatchList();
+      movieDetailsComponent.addToWatchList();
+      api.updateMovie({id: movie.id, data: movie.toRAW()})
+        .then(() => {
+          setCountFilteredMovies(filtersData, movies);
+          component.unblockControls();
+        }).catch(() => {
+          component.shakeControls();
+          movie.isInWatchList = movieComponent.addToWatchList();
+          movieDetailsComponent.addToWatchList();
+          setTimeout(() => {
+            component.unshakeControls();
+            component.unblockControls();
+          }, 300);
+        });
+    };
+
+    const updateWatchedMovies = (component) => {
+      component.blockControls();
+      movie.isWatched = movieComponent.markAsWatched();
+      movieDetailsComponent.markAsWatched();
+      api.updateMovie({id: movie.id, data: movie.toRAW()})
+        .then(() => {
+          setCountFilteredMovies(filtersData, movies);
+          updateProfileRating();
+          component.unblockControls();
+        }).catch(() => {
+          component.shakeControls();
+          movie.isWatched = movieComponent.markAsWatched();
+          movieDetailsComponent.markAsWatched();
+          setTimeout(() => {
+            component.unshakeControls();
+            component.unblockControls();
+          }, 300);
+        });
+    };
+
+    const updateFavoriteListMovies = (component) => {
+      component.blockControls();
+      movie.isFavorite = movieComponent.addToFavoriteList();
+      movieDetailsComponent.addToFavoriteList();
+      api.updateMovie({id: movie.id, data: movie.toRAW()})
+        .then(() => {
+          setCountFilteredMovies(filtersData, movies);
+          component.unblockControls();
+        }).catch(() => {
+          component.shakeControls();
+          movie.isFavorite = movieComponent.addToFavoriteList();
+          movieDetailsComponent.addToFavoriteList();
+          setTimeout(() => {
+            component.unshakeControls();
+            component.unblockControls();
+          }, 300);
+        });
+    };
+
+    const updateCommentsMovieDetails = (newObject, isDelete = false) => {
       const oldComments = movie.comments;
 
       if (isDelete) {
@@ -220,7 +278,7 @@ const showMovies = (container, items, isRelated = false, isClear = false) => {
         });
     };
 
-    const updateMovieRating = (newObject) => {
+    const updateRatingMovieDetails = (newObject) => {
       const oldPersonalRating = movie.personalRating;
       movie.personalRating = newObject.personalRating;
 
@@ -241,9 +299,15 @@ const showMovies = (container, items, isRelated = false, isClear = false) => {
         });
     };
 
-    movieDetailsComponent.onComment = updateMovieComments;
-    movieDetailsComponent.onCommentDelete = updateMovieComments;
-    movieDetailsComponent.onRating = updateMovieRating;
+    movieComponent.onAddToWatchList = updateWatchlistMovies;
+    movieComponent.onMarkAsWatched = updateWatchedMovies;
+    movieComponent.onAddToFavoriteList = updateFavoriteListMovies;
+    movieDetailsComponent.onAddToWatchList = updateWatchlistMovies;
+    movieDetailsComponent.onMarkAsWatched = updateWatchedMovies;
+    movieDetailsComponent.onAddToFavoriteList = updateFavoriteListMovies;
+    movieDetailsComponent.onComment = updateCommentsMovieDetails;
+    movieDetailsComponent.onCommentDelete = updateCommentsMovieDetails;
+    movieDetailsComponent.onRating = updateRatingMovieDetails;
   }
 };
 
@@ -282,11 +346,10 @@ moviesContainer.textContent = `Loading movies...`;
 api.getMovies()
   .then((items) => {
     movies = items;
-    profileRating.textContent = getProfileRating(movies.length);
-    footerStatistic.textContent = movies.length;
-    // showMovies(moviesContainer, getCurrentMovies(movies), false, true);
-    showMovies(moviesRatedContainer, getRelatedRatedMovies(movies), true, true);
-    showMovies(moviesCommentedContainer, getRelatedCommentedMovies(movies), true, true);
+    updateProfileRating();
+    footerStatistic.textContent = `${movies.length}`;
+    showMovies(moviesRatedContainer, getRatedRelatedMovies(movies), true, true);
+    showMovies(moviesCommentedContainer, getCommentedRelatedMovies(movies), true, true);
     activeSearch(movies);
 
     getFiltersTemplate(filtersData, movies);

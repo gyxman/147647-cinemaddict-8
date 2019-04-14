@@ -11,7 +11,6 @@ class Movie extends Component {
     this._totalRating = data.totalRating;
     this._date = data.date;
     this._duration = data.duration;
-    this._genre = data.genre;
     this._comments = data.comments;
     this._isInWatchList = data.isInWatchList;
     this._isWatched = data.isWatched;
@@ -37,46 +36,22 @@ class Movie extends Component {
   _onAddToWatchListButtonClick(evt) {
     evt.preventDefault();
     if (typeof this._onAddToWatchList === `function`) {
-      this._onAddToWatchList();
+      this._onAddToWatchList(this);
     }
-  }
-
-  set onAddToWatchList(fn) {
-    this._onAddToWatchList = fn;
-  }
-
-  addToWatchList() {
-    this._isInWatchList = !this._isInWatchList;
   }
 
   _onMarkAsWatchedButtonClick(evt) {
     evt.preventDefault();
     if (typeof this._onMarkAsWatched === `function`) {
-      this._onMarkAsWatched();
+      this._onMarkAsWatched(this);
     }
-  }
-
-  set onMarkAsWatched(fn) {
-    this._onMarkAsWatched = fn;
-  }
-
-  markAsWatched() {
-    this._isWatched = !this._isWatched;
   }
 
   _onAddToFavoriteListButtonClick(evt) {
     evt.preventDefault();
     if (typeof this._onAddToFavoriteList === `function`) {
-      this._onAddToFavoriteList();
+      this._onAddToFavoriteList(this);
     }
-  }
-
-  set onAddToFavoriteList(fn) {
-    this._onAddToFavoriteList = fn;
-  }
-
-  addToFavoriteList() {
-    this._isFavorite = !this._isFavorite;
   }
 
   get template() {
@@ -98,6 +73,55 @@ class Movie extends Component {
           <button class="film-card__controls-item button film-card__controls-item--favorite"><!--Mark as favorite-->FAV</button>
         </form>` : ``}
       </article>`.trim();
+  }
+
+  set onAddToWatchList(fn) {
+    this._onAddToWatchList = fn;
+  }
+
+  set onMarkAsWatched(fn) {
+    this._onMarkAsWatched = fn;
+  }
+
+  set onAddToFavoriteList(fn) {
+    this._onAddToFavoriteList = fn;
+  }
+
+  addToWatchList() {
+    this._isInWatchList = !this._isInWatchList;
+    return this._isInWatchList;
+  }
+
+  markAsWatched() {
+    this._isWatched = !this._isWatched;
+    return this._isWatched;
+  }
+
+  addToFavoriteList() {
+    this._isFavorite = !this._isFavorite;
+    return this._isFavorite;
+  }
+
+  blockControls() {
+    const controlButtons = this._element.querySelectorAll(`.film-card__controls-item`);
+    controlButtons.forEach((it) => {
+      it.disabled = true;
+    });
+  }
+
+  unblockControls() {
+    const controlButtons = this._element.querySelectorAll(`.film-card__controls-item`);
+    controlButtons.forEach((it) => {
+      it.disabled = false;
+    });
+  }
+
+  shakeControls() {
+    this._element.querySelector(`.film-card__controls`).classList.add(`shake`);
+  }
+
+  unshakeControls() {
+    this._element.querySelector(`.film-card__controls`).classList.remove(`shake`);
   }
 
   updateCommentCount() {
