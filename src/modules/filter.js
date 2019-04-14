@@ -6,8 +6,6 @@ class Filter extends Component {
 
     this._name = data.name;
     this._link = data.link;
-    this._count = null;
-    this._isActive = false;
 
     this._onFilter = null;
     this._onFilterClick = this._onFilterClick.bind(this);
@@ -25,8 +23,8 @@ class Filter extends Component {
 
   get template() {
     return `
-      <a href="#${this._link}" class="main-navigation__item ${this._isActive ? `main-navigation__item--active` : ``}">
-        ${this._name} ${this._count ? `<span class="main-navigation__item-count"></span>` : ``}
+      <a href="#${this._link}" class="main-navigation__item ${this._link === `stats` ? `main-navigation__item--additional` : ``}">
+        ${this._name} <span class="main-navigation__item-count"></span>
       </a>`.trim();
   }
 

@@ -1,4 +1,4 @@
-export const filters = [
+const filters = [
   {
     name: `All movies`,
     link: `all`
@@ -20,3 +20,5 @@ export const filters = [
     link: `stats`
   }
 ];
+
+export default filters;
