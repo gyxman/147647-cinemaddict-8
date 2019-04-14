@@ -30,8 +30,6 @@ class API {
     return fetch(`${this._endPoint}/${url}`, {method, body, headers})
       .then(checkStatus)
       .catch((err) => {
-        // eslint-disable-next-line
-        console.error(`fetch error: ${err}`);
         throw err;
       });
   }
@@ -41,8 +39,6 @@ class API {
       .then(toJSON)
       .then(ModelTask.parseMovies)
       .catch((err) => {
-        // eslint-disable-next-line
-        console.error(`fetch error: ${err}`);
         throw err;
       });
   }
