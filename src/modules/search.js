@@ -14,16 +14,16 @@ class Search extends Component {
     }
   }
 
-  set onSearch(fn) {
-    this._onSearch = fn;
-  }
-
   get template() {
     return `
       <div>
         <input type="text" name="search" class="search__field" placeholder="Search">
         <button type="submit" class="visually-hidden">Search</button>
       </div>`.trim();
+  }
+
+  set onSearch(fn) {
+    this._onSearch = fn;
   }
 
   createListeners() {

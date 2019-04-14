@@ -17,15 +17,15 @@ class Filter extends Component {
     }
   }
 
-  set onFilter(fn) {
-    this._onFilter = fn;
-  }
-
   get template() {
     return `
       <a href="#${this._link}" class="main-navigation__item ${this._link === `stats` ? `main-navigation__item--additional` : ``}">
         ${this._name} <span class="main-navigation__item-count"></span>
       </a>`.trim();
+  }
+
+  set onFilter(fn) {
+    this._onFilter = fn;
   }
 
   createListeners() {

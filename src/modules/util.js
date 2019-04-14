@@ -1,12 +1,4 @@
-const DESCRIPTIONSMALLLENGTH = 140;
-
-export const getRandomNumber = (min = 0, max = 20) => {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
-export const getRundomTimestamp = (start = new Date(2012, 0, 1), end = new Date())=> {
-  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-};
+const DESCRIPTION_SMALL_LENGTH = 140;
 
 export const getFormatedDuration = (time) => {
   const hours = Math.floor(time / 60);
@@ -20,8 +12,8 @@ export const getFormatedDuration = (time) => {
 };
 
 export const getDescriptionString = (description) => {
-  if (description.length > DESCRIPTIONSMALLLENGTH) {
-    return `${description.slice(0, DESCRIPTIONSMALLLENGTH)}...`;
+  if (description.length > DESCRIPTION_SMALL_LENGTH) {
+    return `${description.slice(0, DESCRIPTION_SMALL_LENGTH)}...`;
   }
 
   return description;

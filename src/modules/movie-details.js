@@ -6,6 +6,7 @@ import moment from "moment";
 class MovieDetails extends Component {
   constructor(data) {
     super();
+
     this._title = data.title;
     this._alternativeTitle = data.alternativeTitle;
     this._poster = data.poster;
@@ -23,7 +24,9 @@ class MovieDetails extends Component {
     this._writers = data.writers;
     this._actors = data.actors;
     this._comments = data.comments;
+    this._isInWatchList = data.isInWatchList;
     this._isWatched = data.isWatched;
+    this._isFavorite = data.isFavorite;
 
     this._onComment = null;
     this._onCommentDelete = null;
@@ -33,6 +36,9 @@ class MovieDetails extends Component {
     this._onCommentTextareaKeydown = this._onCommentTextareaKeydown.bind(this);
     this._onCommentRemoveButtonClick = this._onCommentRemoveButtonClick.bind(this);
     this._onRatingButtonClick = this._onRatingButtonClick.bind(this);
+    this._onAddToWatchListButtonClick = this._onAddToWatchListButtonClick.bind(this);
+    this._onMarkAsWatchedButtonClick = this._onMarkAsWatchedButtonClick.bind(this);
+    this._onAddToFavoriteListButtonClick = this._onAddToFavoriteListButtonClick.bind(this);
   }
 
   _processForm(formData) {
@@ -102,16 +108,23 @@ class MovieDetails extends Component {
     }
   }
 
-  set onComment(fn) {
-    this._onComment = fn;
+  _onAddToWatchListButtonClick() {
+    if (typeof this._onAddToWatchList === `function`) {
+      this._onAddToWatchList(this);
+    }
   }
 
-  set onCommentDelete(fn) {
-    this._onCommentDelete = fn;
+  _onMarkAsWatchedButtonClick(evt) {
+    evt.preventDefault();
+    if (typeof this._onMarkAsWatched === `function`) {
+      this._onMarkAsWatched(this);
+    }
   }
 
-  set onRating(fn) {
-    this._onRating = fn;
+  _onAddToFavoriteListButtonClick() {
+    if (typeof this._onAddToFavoriteList === `function`) {
+      this._onAddToFavoriteList(this);
+    }
   }
 
   get template() {
@@ -180,13 +193,13 @@ class MovieDetails extends Component {
           </div>
       
           <section class="film-details__controls">
-            <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
+            <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist" ${this._isInWatchList ? `checked` : ``}>
             <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
       
             <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched" ${this._isWatched ? `checked` : ``}>
             <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
       
-            <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
+            <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite" ${this._isFavorite ? `checked` : ``}>
             <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
           </section>
       
@@ -243,6 +256,45 @@ class MovieDetails extends Component {
           </section>
         </form>
       </section>`.trim();
+  }
+
+  set onComment(fn) {
+    this._onComment = fn;
+  }
+
+  set onCommentDelete(fn) {
+    this._onCommentDelete = fn;
+  }
+
+  set onRating(fn) {
+    this._onRating = fn;
+  }
+
+  set onAddToWatchList(fn) {
+    this._onAddToWatchList = fn;
+  }
+
+  set onMarkAsWatched(fn) {
+    this._onMarkAsWatched = fn;
+  }
+
+  set onAddToFavoriteList(fn) {
+    this._onAddToFavoriteList = fn;
+  }
+
+  addToWatchList() {
+    this._isInWatchList = !this._isInWatchList;
+    return this._isInWatchList;
+  }
+
+  markAsWatched() {
+    this._isWatched = !this._isWatched;
+    return this._isWatched;
+  }
+
+  addToFavoriteList() {
+    this._isFavorite = !this._isFavorite;
+    return this._isFavorite;
   }
 
   updateRating(data) {
@@ -324,6 +376,28 @@ class MovieDetails extends Component {
     this._element.querySelector(`.film-details__comments-wrap`).classList.remove(`shake`);
   }
 
+  blockControls() {
+    const controlButtons = this._element.querySelectorAll(`.film-details__control-input`);
+    controlButtons.forEach((it) => {
+      it.disabled = true;
+    });
+  }
+
+  unblockControls() {
+    const controlButtons = this._element.querySelectorAll(`.film-details__control-input`);
+    controlButtons.forEach((it) => {
+      it.disabled = false;
+    });
+  }
+
+  shakeControls() {
+    this._element.querySelector(`.film-details__controls`).classList.add(`shake`);
+  }
+
+  unshakeControls() {
+    this._element.querySelector(`.film-details__controls`).classList.remove(`shake`);
+  }
+
   createListeners() {
     document.addEventListener(`keydown`, this._onEscKeydown);
     this._element.querySelector(`.film-details__close-btn`)
@@ -335,6 +409,12 @@ class MovieDetails extends Component {
     this._element.querySelectorAll(`.film-details__user-rating-input`).forEach((it)=> {
       it.addEventListener(`change`, this._onRatingButtonClick);
     });
+    this._element.querySelector(`#watchlist`)
+      .addEventListener(`change`, this._onAddToWatchListButtonClick);
+    this._element.querySelector(`#watched`)
+      .addEventListener(`click`, this._onMarkAsWatchedButtonClick);
+    this._element.querySelector(`#favorite`)
+      .addEventListener(`click`, this._onAddToFavoriteListButtonClick);
   }
 
   removeListeners() {

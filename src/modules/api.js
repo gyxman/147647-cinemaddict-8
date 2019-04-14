@@ -24,6 +24,18 @@ class API {
     this._authorization = authorization;
   }
 
+  _load({url, method = Method.GET, body = null, headers = new Headers()}) {
+    headers.append(`Authorization`, this._authorization);
+
+    return fetch(`${this._endPoint}/${url}`, {method, body, headers})
+      .then(checkStatus)
+      .catch((err) => {
+        // eslint-disable-next-line
+        console.error(`fetch error: ${err}`);
+        throw err;
+      });
+  }
+
   getMovies() {
     return this._load({url: `movies`})
       .then(toJSON)
@@ -44,18 +56,6 @@ class API {
     })
       .then(toJSON)
       .then(ModelTask.parseMovie);
-  }
-
-  _load({url, method = Method.GET, body = null, headers = new Headers()}) {
-    headers.append(`Authorization`, this._authorization);
-
-    return fetch(`${this._endPoint}/${url}`, {method, body, headers})
-      .then(checkStatus)
-      .catch((err) => {
-        // eslint-disable-next-line
-        console.error(`fetch error: ${err}`);
-        throw err;
-      });
   }
 }
 
