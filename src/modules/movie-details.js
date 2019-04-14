@@ -1,37 +1,48 @@
-import {getFormatedDuration} from './util';
 import Component from './component';
 import getCommentsElement from './parts/make-movie-comment';
-import {reactions} from '../data/reactions';
+import getRatingElement from './parts/make-movie-rating';
 import moment from "moment";
 
 class MovieDetails extends Component {
   constructor(data) {
     super();
-    // this._id = data.id;
     this._title = data.title;
+    this._alternativeTitle = data.alternativeTitle;
     this._poster = data.poster;
     this._description = data.description;
-    this._rating = data.rating;
-    this._date = data.date;
+    this._personalRating = data.personalRating;
+    this._totalRating = data.totalRating;
+    this._ageRating = data.ageRating;
     this._duration = data.duration;
+    this._release = {
+      date: data.release.date,
+      country: data.release.country,
+    };
+    this._director = data.director;
     this._genre = data.genre;
+    this._writers = data.writers;
+    this._actors = data.actors;
     this._comments = data.comments;
+    this._isWatched = data.isWatched;
 
     this._onComment = null;
+    this._onCommentDelete = null;
 
+    this._onEscKeydown = this._onEscKeydown.bind(this);
     this._onCloseButtonClick = this._onCloseButtonClick.bind(this);
     this._onCommentTextareaKeydown = this._onCommentTextareaKeydown.bind(this);
+    this._onCommentRemoveButtonClick = this._onCommentRemoveButtonClick.bind(this);
     this._onRatingButtonClick = this._onRatingButtonClick.bind(this);
   }
 
   _processForm(formData) {
     const entry = {
-      rating: ``,
+      personalRating: ``,
       comment: {
-        text: ``,
-        author: `Me`,
-        reaction: ``,
-        date: new Date(),
+        comment: ``,
+        author: `User`,
+        emotion: ``,
+        date: Date.now(),
       },
     };
 
@@ -54,6 +65,14 @@ class MovieDetails extends Component {
     return newData;
   }
 
+  _onEscKeydown(evt) {
+    if (evt.keyCode === 27) {
+      if (typeof this._onClick === `function`) {
+        this._onClick();
+      }
+    }
+  }
+
   _onCloseButtonClick() {
     if (typeof this._onClick === `function`) {
       this._onClick();
@@ -69,6 +88,13 @@ class MovieDetails extends Component {
     }
   }
 
+  _onCommentRemoveButtonClick() {
+    if (typeof this._onCommentDelete === `function`) {
+      const newData = this._getPopupData();
+      this._onCommentDelete(newData, true);
+    }
+  }
+
   _onRatingButtonClick() {
     if (typeof this._onRating === `function`) {
       const newData = this._getPopupData();
@@ -78,6 +104,10 @@ class MovieDetails extends Component {
 
   set onComment(fn) {
     this._onComment = fn;
+  }
+
+  set onCommentDelete(fn) {
+    this._onCommentDelete = fn;
   }
 
   set onRating(fn) {
@@ -93,56 +123,53 @@ class MovieDetails extends Component {
           </div>
           <div class="film-details__info-wrap">
             <div class="film-details__poster">
-              <img class="film-details__poster-img" src="./images/posters/${this._poster}" alt="${this._title}">
+              <img class="film-details__poster-img" src="${this._poster}" alt="${this._title}">
       
-              <p class="film-details__age">18+</p>
+              <p class="film-details__age">${this._ageRating}+</p>
             </div>
       
             <div class="film-details__info">
               <div class="film-details__info-head">
                 <div class="film-details__title-wrap">
                   <h3 class="film-details__title">${this._title}</h3>
-                  <p class="film-details__title-original">Original: Невероятная семейка</p>
+                  <p class="film-details__title-original">Original: ${this._alternativeTitle}</p>
                 </div>
       
                 <div class="film-details__rating">
-                  <p class="film-details__total-rating">${this._rating}</p>
-                  <p class="film-details__user-rating">Your rate 8</p>
+                  <p class="film-details__total-rating">${this._totalRating}</p>
+                  <p class="film-details__user-rating">Your rate ${this._personalRating}</p>
                 </div>
               </div>
       
               <table class="film-details__table">
                 <tr class="film-details__row">
                   <td class="film-details__term">Director</td>
-                  <td class="film-details__cell">Brad Bird</td>
+                  <td class="film-details__cell">${this._director}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Writers</td>
-                  <td class="film-details__cell">Brad Bird</td>
+                  <td class="film-details__cell">${this._writers}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Actors</td>
-                  <td class="film-details__cell">Samuel L. Jackson, Catherine Keener, Sophia Bush</td>
+                  <td class="film-details__cell">${this._actors}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Release Date</td>
-                  <td class="film-details__cell">${moment(this._date).format(`D MMMM YYYY`)} (USA)</td>
+                  <td class="film-details__cell">${moment(this._release.date).format(`DD MMMM YYYY`)} (USA)</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Runtime</td>
-                    <!-- TODO здесь нужно выводить в минутах через moment.js -->
-                    <td class="film-details__cell">${getFormatedDuration(this._duration)}</td>
+                    <td class="film-details__cell">${this._duration} min</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Country</td>
-                  <td class="film-details__cell">USA</td>
+                  <td class="film-details__cell">${this._release.country}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Genres</td>
                   <td class="film-details__cell">
-                    <span class="film-details__genre">Animation</span>
-                    <span class="film-details__genre">Action</span>
-                    <span class="film-details__genre">Adventure</span></td>
+                    ${this._genre.map((it) => `<span class="film-details__genre">${it}</span>`).join(``)}
                 </tr>
               </table>
       
@@ -156,7 +183,7 @@ class MovieDetails extends Component {
             <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
             <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
       
-            <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched" checked>
+            <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched" ${this._isWatched ? `checked` : ``}>
             <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
       
             <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
@@ -194,8 +221,8 @@ class MovieDetails extends Component {
       
           <section class="film-details__user-rating-wrap">
             <div class="film-details__user-rating-controls">
-              <span class="film-details__watched-status film-details__watched-status--active">Already watched</span>
-              <button class="film-details__watched-reset" type="button">undo</button>
+              <span class="film-details__watched-status film-details__watched-status--active"></span>
+              <button class="film-details__watched-reset visually-hidden" type="button">undo</button>
             </div>
       
             <div class="film-details__user-score">
@@ -209,33 +236,7 @@ class MovieDetails extends Component {
                 <p class="film-details__user-rating-feelings">How you feel it?</p>
       
                 <div class="film-details__user-rating-score">
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="1" id="rating-1">
-                  <label class="film-details__user-rating-label" for="rating-1">1</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="2" id="rating-2">
-                  <label class="film-details__user-rating-label" for="rating-2">2</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="3" id="rating-3">
-                  <label class="film-details__user-rating-label" for="rating-3">3</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="4" id="rating-4">
-                  <label class="film-details__user-rating-label" for="rating-4">4</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="5" id="rating-5" checked>
-                  <label class="film-details__user-rating-label" for="rating-5">5</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="6" id="rating-6">
-                  <label class="film-details__user-rating-label" for="rating-6">6</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="7" id="rating-7">
-                  <label class="film-details__user-rating-label" for="rating-7">7</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="8" id="rating-8">
-                  <label class="film-details__user-rating-label" for="rating-8">8</label>
-      
-                  <input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="9" id="rating-9">
-                  <label class="film-details__user-rating-label" for="rating-9">9</label>
-      
+                  ${getRatingElement(this._personalRating)}
                 </div>
               </section>
             </div>
@@ -244,21 +245,106 @@ class MovieDetails extends Component {
       </section>`.trim();
   }
 
+  updateRating(data) {
+    this._personalRating = data.personalRating;
+
+    this._element.querySelector(`.film-details__user-rating`).textContent = `Your rate ${this._personalRating}`;
+    const ratingRadio = this._element.querySelectorAll(`.film-details__user-rating-input`);
+    ratingRadio.forEach((it) => {
+      if (it.value === this._personalRating) {
+        it.checked = true;
+      } else {
+        it.checked = false;
+      }
+    });
+  }
+
+  blockRating() {
+    const ratingRadio = this._element.querySelectorAll(`.film-details__user-rating-input`);
+    ratingRadio.forEach((it) => {
+      it.disabled = true;
+    });
+  }
+
+  unblockRating() {
+    const ratingRadio = this._element.querySelectorAll(`.film-details__user-rating-input`);
+    ratingRadio.forEach((it) => {
+      it.disabled = false;
+    });
+  }
+
+  shakeRating() {
+    this._element.querySelector(`.film-details__user-rating-input:checked`).classList.add(`film-details__user-rating-input_error`);
+    this._element.querySelector(`.film-details__user-score`).classList.add(`shake`);
+  }
+
+  unshakeRating() {
+    this._element.querySelector(`.film-details__user-rating-input_error`).classList.remove(`film-details__user-rating-input_error`);
+    this._element.querySelector(`.film-details__user-score`).classList.remove(`shake`);
+  }
+
+  updateComments(data, isDelete = false) {
+    this._comments = data.comments;
+
+    const commentStatus = this._element.querySelector(`.film-details__watched-status`);
+    const resetButton = this._element.querySelector(`.film-details__watched-reset`);
+    const commentInput = this._element.querySelector(`.film-details__comment-input`);
+    const commentsContainer = this._element.querySelector(`.film-details__comments-list`);
+    const commentsCount = this._element.querySelector(`.film-details__comments-count`);
+
+    if (isDelete) {
+      commentStatus.textContent = `Comment deleted`;
+      resetButton.classList.add(`visually-hidden`);
+    } else {
+      commentStatus.textContent = `Comment added`;
+      resetButton.classList.remove(`visually-hidden`);
+    }
+    commentInput.value = ``;
+    commentsContainer.innerHTML = getCommentsElement(this._comments);
+    commentsCount.innerHTML = this._comments.length;
+  }
+
+  blockComments() {
+    const commentTextarea = this._element.querySelector(`.film-details__comment-input`);
+    commentTextarea.disabled = true;
+  }
+
+  unblockComments() {
+    const commentTextarea = this._element.querySelector(`.film-details__comment-input`);
+    commentTextarea.disabled = false;
+  }
+
+  shakeComments() {
+    this._element.querySelector(`.film-details__comment-input`).classList.add(`film-details__comment-input_error`);
+    this._element.querySelector(`.film-details__comments-wrap`).classList.add(`shake`);
+  }
+
+  unshakeComments() {
+    this._element.querySelector(`.film-details__comment-input`).classList.remove(`film-details__comment-input_error`);
+    this._element.querySelector(`.film-details__comments-wrap`).classList.remove(`shake`);
+  }
+
   createListeners() {
+    document.addEventListener(`keydown`, this._onEscKeydown);
     this._element.querySelector(`.film-details__close-btn`)
       .addEventListener(`click`, this._onCloseButtonClick);
     this._element.querySelector(`.film-details__comment-input`)
       .addEventListener(`keydown`, this._onCommentTextareaKeydown);
+    this._element.querySelector(`.film-details__watched-reset`)
+      .addEventListener(`click`, this._onCommentRemoveButtonClick);
     this._element.querySelectorAll(`.film-details__user-rating-input`).forEach((it)=> {
       it.addEventListener(`change`, this._onRatingButtonClick);
     });
   }
 
   removeListeners() {
+    document.removeEventListener(`keydown`, this._onEscKeydown);
     this._element.querySelector(`.film-details__close-btn`)
       .removeEventListener(`click`, this._onCloseButtonClick);
     this._element.querySelector(`.film-details__comment-input`)
       .removeEventListener(`keydown`, this._onCommentTextareaKeydown);
+    this._element.querySelector(`.film-details__watched-reset`)
+      .removeEventListener(`click`, this._onCommentRemoveButtonClick);
     this._element.querySelectorAll(`.film-details__user-rating-input`).forEach((it)=> {
       it.removeEventListener(`change`, this._onRatingButtonClick);
     });
@@ -267,13 +353,13 @@ class MovieDetails extends Component {
   static createMapper(target) {
     return {
       'comment-emoji': (value) => {
-        target.comment.reaction = reactions[value];
+        target.comment.emotion = value;
       },
       'comment': (value) => {
-        target.comment.text = value;
+        target.comment.comment = value;
       },
       'score': (value) => {
-        target.rating = value;
+        target.personalRating = value;
       }
     };
   }

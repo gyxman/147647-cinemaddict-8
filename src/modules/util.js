@@ -1,3 +1,5 @@
+const DESCRIPTIONSMALLLENGTH = 140;
+
 export const getRandomNumber = (min = 0, max = 20) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -7,14 +9,22 @@ export const getRundomTimestamp = (start = new Date(2012, 0, 1), end = new Date(
 };
 
 export const getFormatedDuration = (time) => {
-  const hours = Math.floor(time);
+  const hours = Math.floor(time / 60);
   const minutes = time - hours * 60;
 
   if (hours > 0) {
-    return `${hours}h&nbsp;${minutes}m`;
+    return `${hours}h:&nbsp;${minutes}m`;
   }
 
   return `${minutes}m`;
+};
+
+export const getDescriptionString = (description) => {
+  if (description.length > DESCRIPTIONSMALLLENGTH) {
+    return `${description.slice(0, DESCRIPTIONSMALLLENGTH)}...`;
+  }
+
+  return description;
 };
 
 export const getCommentsString = (count) => {
@@ -29,5 +39,10 @@ export const createElement = (template) => {
 };
 
 export const getHashUrl = () => {
-  return window.location.hash;
+  const hash = window.location.hash;
+  if (hash) {
+    return hash;
+  }
+
+  return `#all`;
 };
