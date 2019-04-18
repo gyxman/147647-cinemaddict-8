@@ -1,9 +1,9 @@
 import moment from "moment";
-import reactions from '../../data/reactions';
+import Reaction from '../../data/reactions';
 
 const getCommentElement = (comment) => {
   return `<li class="film-details__comment">
-    <span class="film-details__comment-emoji">${reactions[comment.emotion]}</span>
+    <span class="film-details__comment-emoji">${Reaction[comment.emotion]}</span>
     <div>
       <p class="film-details__comment-text">${comment.comment}</p>
       <p class="film-details__comment-info">

@@ -1,7 +1,7 @@
-const reactions = {
+const Reaction = {
   'sleeping': `😴`,
   'neutral-face': `😐`,
   'grinning': `😀`
 };
 
-export default reactions;
+export default Reaction;

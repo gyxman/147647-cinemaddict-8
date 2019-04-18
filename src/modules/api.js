@@ -5,8 +5,13 @@ const Method = {
   PUT: `PUT`,
 };
 
+const Response = {
+  CODE_START: 200,
+  CODE_END: 300,
+};
+
 const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= Response.CODE_START && response.status < Response.CODE_END) {
     return response;
   } else {
     throw new Error(`${response.status}: ${response.statusText}`);

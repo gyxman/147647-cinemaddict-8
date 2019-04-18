@@ -6,9 +6,25 @@ import moment from "moment";
 import "moment-duration-format";
 import getStatisticElement from "./parts/make-statistic-info";
 
-const lastWeekThisDay = moment().startOf(`day`).subtract(1, `week`);
-const lastMonthThisDay = moment().startOf(`day`).subtract(1, `month`);
-const lastYearThisDay = moment().startOf(`day`).subtract(1, `year`);
+const PeriodName = {
+  ALL: `all-time`,
+  TODAY: `today`,
+  WEEK: `week`,
+  MONTH: `month`,
+  YEAR: `year`,
+};
+
+const TimeType = {
+  DAY: `day`,
+  WEEK: `week`,
+  MONTH: `month`,
+  YEAR: `year`,
+};
+
+const LAST_WEEK_THIS_DAY = moment().startOf(TimeType.DAY).subtract(1, TimeType.WEEK);
+const LAST_MONTH_THIS_DAY = moment().startOf(TimeType.DAY).subtract(1, TimeType.MONTH);
+const LAST_YEAR_THIS_DAY = moment().startOf(TimeType.DAY).subtract(1, TimeType.YEAR);
+const BAR_HEIGHT = 50;
 
 class Statistic extends Component {
   constructor(films) {
@@ -39,20 +55,20 @@ class Statistic extends Component {
 
   _getFilteredData(data, periodName) {
     switch (periodName) {
-      case `all-time`:
+      case PeriodName.ALL:
         return data;
 
-      case `today`:
+      case PeriodName.TODAY:
         return data.filter((it) => moment(it.watchingDate).format(`D MMMM YYYY`) === moment().format(`D MMMM YYYY`));
 
-      case `week`:
-        return data.filter((it) => it.watchingDate > lastWeekThisDay);
+      case PeriodName.WEEK:
+        return data.filter((it) => it.watchingDate > LAST_WEEK_THIS_DAY);
 
-      case `month`:
-        return data.filter((it) => it.watchingDate > lastMonthThisDay);
+      case PeriodName.MONTH:
+        return data.filter((it) => it.watchingDate > LAST_MONTH_THIS_DAY);
 
-      case `year`:
-        return data.filter((it) => it.watchingDate > lastYearThisDay);
+      case PeriodName.YEAR:
+        return data.filter((it) => it.watchingDate > LAST_YEAR_THIS_DAY);
     }
 
     return null;
@@ -196,7 +212,6 @@ class Statistic extends Component {
     this._partialUpdate(this._getActivePeriod());
     const statisticCtx = this._element.querySelector(`.statistic__chart`);
     const statisticData = this._getGenreData();
-    const BAR_HEIGHT = 50;
     statisticCtx.height = BAR_HEIGHT * statisticData.labels.length;
 
     this._statisticChart = new Chart(statisticCtx, this._getChartSettings(statisticData.labels, statisticData.value));
